@@ -80,7 +80,7 @@ export default function ChatPanel({ isMinimized, onMinimize, onClose }: ChatPane
   return (
     <div className="w-full h-full flex flex-col bg-discord-dark rounded-lg overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-discord-darker border-b border-discord-light">
+      <div className="flex items-center justify-between px-4 py-4 bg-discord-darker border-b border-discord-light">
         <div className="flex items-center gap-3">
           {/* Model Selector */}
           <div className="relative">
@@ -199,8 +199,8 @@ export default function ChatPanel({ isMinimized, onMinimize, onClose }: ChatPane
       </div>
 
       {/* Input Area */}
-      <div className="shrink-0 p-4 bg-discord-darker border-t border-discord-light">
-        <div className="flex items-end gap-3 bg-discord-input rounded-lg px-4 py-3">
+      <div className="shrink-0 px-4 pb-4 pt-2">
+        <div className="flex items-end gap-3 bg-discord-input rounded-lg px-4 py-3 shadow-lg shadow-black/30">
           <textarea
             ref={inputRef}
             value={inputValue}
@@ -211,7 +211,7 @@ export default function ChatPanel({ isMinimized, onMinimize, onClose }: ChatPane
               e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
             }}
             onKeyDown={handleKeyDown}
-            placeholder="Type a message..."
+            placeholder=" What can I do for ya?"
             rows={1}
             className="flex-1 bg-transparent text-discord-text placeholder-discord-muted text-sm resize-none outline-none leading-5"
             style={{ minHeight: '20px', maxHeight: '120px', overflowY: 'auto' }}
