@@ -44,7 +44,12 @@ export default function ChatPanel({ isMinimized, onMinimize, onClose }: ChatPane
 
     setMessages((prev) => [...prev, newMessage]);
     setInputValue('');
-    inputRef.current?.focus();
+    
+    // Reset textarea height
+    if (inputRef.current) {
+      inputRef.current.style.height = '20px';
+      inputRef.current.focus();
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -194,17 +199,22 @@ export default function ChatPanel({ isMinimized, onMinimize, onClose }: ChatPane
       </div>
 
       {/* Input Area */}
-      <div className="shrink-0 p-3 bg-discord-darker border-t border-discord-light">
-        <div className="flex items-end gap-2 bg-discord-input rounded-lg px-3 py-2">
+      <div className="shrink-0 p-4 bg-discord-darker border-t border-discord-light">
+        <div className="flex items-end gap-3 bg-discord-input rounded-lg px-4 py-3">
           <textarea
             ref={inputRef}
             value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => {
+              setInputValue(e.target.value);
+              // Auto-resize textarea
+              e.target.style.height = 'auto';
+              e.target.style.height = Math.min(e.target.scrollHeight, 120) + 'px';
+            }}
             onKeyDown={handleKeyDown}
             placeholder="Type a message..."
             rows={1}
-            className="flex-1 bg-transparent text-discord-text placeholder-discord-muted text-sm resize-none outline-none max-h-24"
-            style={{ minHeight: '20px' }}
+            className="flex-1 bg-transparent text-discord-text placeholder-discord-muted text-sm resize-none outline-none leading-5"
+            style={{ minHeight: '20px', maxHeight: '120px', overflowY: 'auto' }}
           />
           <button
             onClick={handleSend}
