@@ -82,11 +82,14 @@ export default function ChatPanel({ isMinimized, onMinimize, onClose }: ChatPane
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-4 bg-discord-darker border-b border-discord-light">
         <div className="flex items-center gap-3">
+          {/* Left Spacer - adds space before model selector. Change w-2 to w-4, w-6, etc. for more space */}
+          <div className="w-0" />
+          
           {/* Model Selector */}
           <div className="relative">
             <button
               onClick={() => setIsModelDropdownOpen(!isModelDropdownOpen)}
-              className="flex items-center gap-2 px-3 py-1.5 bg-discord-light hover:bg-discord-hover rounded-md text-sm text-discord-text transition-colors"
+              className="flex items-center justify-center gap-2 px-3 py-1.5 bg-discord-light hover:bg-discord-hover rounded-md text-xs text-discord-text transition-colors"
             >
               <span>{selectedModel || 'Select Model'}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
